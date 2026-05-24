@@ -1,5 +1,6 @@
 # KISS (Kinetic Interception Secondary System)
-<img width="1263" height="719" alt="GPONMaris" src="https://github.com/user-attachments/assets/72604300-c812-49bf-88b4-1213d9004e57" />
+![1000101728](https://github.com/user-attachments/assets/6a58c0dd-ac5e-409b-ae78-9b55d12d2f08)
+
 
 **KISS** is a cute little mod that changes how munitions behave when destroyed. 
 
