@@ -24,36 +24,30 @@ namespace KISSMod
         }
     }
 
-    [HarmonyPatch(typeof(Missile), "Detonate")]
-    public static class Missile_Detonate_Patch
+    [HarmonyPatch]
+    public static class Warhead_Detonate_Patch
     {
-        private static readonly AccessTools.FieldRef<Missile, float> HitpointsRef =
-            AccessTools.FieldRefAccess<Missile, float>("hitpoints");
-
-        private static readonly AccessTools.FieldRef<Missile, object> WarheadRef =
-            AccessTools.FieldRefAccess<Missile, object>("warhead");
-
-        private static readonly Type WarheadType = AccessTools.Inner(typeof(Missile), "Warhead");
-
-        private static readonly AccessTools.FieldRef<object, bool> ArmedRef =
-            AccessTools.FieldRefAccess<bool>(WarheadType, "Armed");
-
-        public static void Prefix(Missile __instance, bool hitArmor, bool hitTerrain)
+        public static System.Reflection.MethodBase TargetMethod()
         {
-            if (__instance == null) return;
-            
-            float hitpoints = HitpointsRef(__instance);
-            
-            if (hitpoints <= 0f || hitArmor || hitTerrain)
-            {
-                object warhead = WarheadRef(__instance);
-                if (warhead != null)
-                {
-                    // Zero-allocation field ref updates
-                    ArmedRef(warhead) = true;
-                }
-            }
+            return AccessTools.Method(AccessTools.Inner(typeof(Missile), "Warhead"), "Detonate");
+        }
+
+        public static void Prefix(ref bool armed)
+        {
+            armed = true;
         }
     }
 
+    [HarmonyPatch(typeof(Missile), "Awake")]
+    public static class Missile_Awake_Patch
+    {
+        private static readonly AccessTools.FieldRef<Missile, float> GLimitRef =
+            AccessTools.FieldRefAccess<Missile, float>("gLimit");
+
+        public static void Postfix(Missile __instance)
+        {
+            if (__instance == null) return;
+            GLimitRef(__instance) = float.MaxValue;
+        }
+    }
 }
