@@ -4,7 +4,7 @@ using HarmonyLib;
 using UnityEngine;
 namespace KISSMod
 {
-    [BepInPlugin("neutral.kiss", "KISS Mod (Kinetic Interception Secondary System)", "1.1.0")]
+    [BepInPlugin("neutral.kiss", "KISS Mod (Kinetic Interception Secondary System)", "1.1.1")]
     public class KISSPlugin : BaseUnityPlugin
     {
         public static KISSPlugin Instance;
@@ -13,10 +13,6 @@ namespace KISSMod
         {
             Instance = this;
             _harmony = new Harmony("neutral.kiss");
-            _harmony.Patch(
-                AccessTools.Method(typeof(Missile), "Awake"),
-                postfix: new HarmonyMethod(AccessTools.Method(typeof(Missile_Awake_Patch), "Postfix"))
-            );
             var prefixMethod = new HarmonyMethod(AccessTools.Method(typeof(Warhead_Detonate_Patch), "Prefix"));
             var originalDetonate = AccessTools.Method(typeof(Missile.Warhead), "Detonate");
             if (originalDetonate != null)
@@ -45,16 +41,6 @@ namespace KISSMod
         public static void Prefix(ref bool armed)
         {
             armed = true;
-        }
-    }
-    public static class Missile_Awake_Patch
-    {
-        private static readonly AccessTools.FieldRef<Missile, float> GLimitRef =
-            AccessTools.FieldRefAccess<Missile, float>("gLimit");
-        public static void Postfix(Missile __instance)
-        {
-            if (__instance == null) return;
-            GLimitRef(__instance) = float.MaxValue;
         }
     }
 }
