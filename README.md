@@ -10,12 +10,9 @@ If a missile or bomb is intercepted by enemy fire (HP reaches 0), strikes vehicl
 
 This creates spectacular mid-air explosions during intense CIWS and interceptor engagements, and makes low-altitude interceptions much more dangerous.
 
-### Features
-* **Sympathetic Interception:** Munitions will detonate with their full explosive yield if destroyed by incoming fire or interception.
-* **Catastrophic Cook-off:** Carried missiles and bombs will still explode even as their host aircraft is rapidly disassembled! If your plane goes down hard while carrying a heavy payload, expect a massive secondary explosion.
-* **Performance Optimized:** Built with zero-allocation Harmony FieldRefs to ensure maximum framerate and zero stutter during massive missile volleys.
+## Features
 
-### Disclaimer
-* **Chain Reactions & Sympathetic Detonations:** Because physical impacts and extreme forces trigger the warheads, a nuclear explosion may violently toss and detonate nearby warheads mid-air through High-G impact forces or sympathetic shockwaves!
-
-*Mod ID: com.kiss*
+- **Sympathetic Interception:** Munitions will detonate with their full explosive yield if destroyed by incoming fire or interception.
+- **Catastrophic Cook-off:** Carried missiles and bombs will still explode even as their host aircraft is rapidly disassembled! If your plane goes down hard while carrying a heavy payload, expect a massive secondary explosion.
+- **Performance Optimized:** Built with zero-allocation Harmony FieldRefs to ensure maximum framerate and zero stutter during massive missile volleys.
+- **Chain Reactions & Sympathetic Detonations:** Because physical impacts and extreme forces trigger the warheads, a nuclear explosion may violently toss and detonate nearby warheads mid-air through High-G impact forces or sympathetic shockwaves!
